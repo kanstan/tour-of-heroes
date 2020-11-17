@@ -1,6 +1,6 @@
-<!-- master -->
 <h2>My Heroes</h2>
 <ul class="heroes">
+    <!-- property binding 1 -->
     <!-- adds to <li> class 'selected' if hero equals selectedHero (or removes otherwise - class binding) -->
   <li *ngFor="let hero of heroes" 
         [class.selected]="hero === selectedHero" 
@@ -9,13 +9,6 @@
   </li>
 </ul>
 
-<!-- details -->
-<div *ngIf="selectedHero">
-    <h2>{{selectedHero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedHero.id}}</div>
-    <div>
-        <label>name:
-            <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-        </label>
-    </div>
-</div>
+<!-- property binding 2 -->
+<!-- [hero]="selectedHero" - pasing the value of 'selectedHero' from parent component to 'hero' of child component -->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
