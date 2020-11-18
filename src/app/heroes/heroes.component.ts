@@ -13,7 +13,7 @@ import { MessageService } from '../message.service';
 export class HeroesComponent implements OnInit { // has to always be exported -> app.module can import it -> 
   // -> app.module can then add it to decalrations -> can be used by all other stuff inside app module 
   
-  selectedHero: Hero;
+  // selectedHero: Hero;
 
   heroes: Hero[];
 
@@ -30,9 +30,9 @@ export class HeroesComponent implements OnInit { // has to always be exported ->
       .subscribe(newHeroes => this.heroes = newHeroes);
   }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`)
-  }
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`)
+  // }
 
 }
