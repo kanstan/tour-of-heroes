@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -17,7 +18,7 @@ export class HeroesComponent implements OnInit { // has to always be exported ->
   heroes: Hero[];
 
   // ctor is for simple initialisations...
-  constructor(private heroService: HeroService) {  }
+  constructor(private heroService: HeroService, private messageService: MessageService) {  }
 
   // ...ngOnInit is for doing real work -> will be called after ctor, wenn the instance already created
   ngOnInit() {
@@ -31,6 +32,7 @@ export class HeroesComponent implements OnInit { // has to always be exported ->
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`)
   }
 
 }
