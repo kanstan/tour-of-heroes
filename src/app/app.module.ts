@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // module is just a register of components, pipes etc, used in this module
 @NgModule({
@@ -14,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent // Every component must be declared in exactly one NgModule
+    MessagesComponent,
+    DashboardComponent // Every component must be declared in exactly one NgModule
   ],
   imports: [ // makes the *exported* components, pipes etc. of **some other module** available in the current module
     BrowserModule, // BrowserModule provides browser-specific services such as DOM rendering, sanitization, and location
