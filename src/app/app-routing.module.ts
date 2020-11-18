@@ -6,10 +6,10 @@ import { HeroesComponent } from './heroes/heroes.component';
 
 // path is URL's path; component - which component to load when URL with the 'path' is opened
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // redirect route
   { path: 'heroes', component: HeroesComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'detail/:id', component: HeroDetailComponent }
+  { path: 'detail/:id', component: HeroDetailComponent } // parameterized route
 ];
 
 @NgModule({
