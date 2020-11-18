@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -14,11 +14,19 @@ export class HeroesComponent implements OnInit { // has to always be exported ->
   
   selectedHero: Hero;
 
-  heroes = HEROES;
+  heroes: Hero[];
 
-  constructor() {  }
+  // ctor is for simple initialisations...
+  constructor(private heroService: HeroService) {  }
 
+  // ...ngOnInit is for doing real work -> will be called after ctor, wenn the instance already created
   ngOnInit() {
+    this.getHeroes();
+  }
+
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(newHeroes => this.heroes = newHeroes);
   }
 
   onSelect(hero: Hero): void {
