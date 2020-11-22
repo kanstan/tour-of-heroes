@@ -8,6 +8,9 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api/http-client-in-memory-web-api.module';
+import { InMemoryDataService } from './in-memory-data.service';
 
 // module is just a register of components, pipes etc, used in this module
 @NgModule({
@@ -21,7 +24,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [ // makes the *exported* components, pipes etc. of **some other module** available in the current module
     BrowserModule, // BrowserModule provides browser-specific services such as DOM rendering, sanitization, and location
     FormsModule, // FormsModule provides e.g. to be able to use ngModel in heroes.component.html
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    // intercepts HTTP requests and returns simulated server responses.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [], // makes these services and values known to DI system -> can be injected everywhere in this module
   bootstrap: [AppComponent] // the root component that Angular creates and inserts into the index.html host web page
