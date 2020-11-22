@@ -25,16 +25,21 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     // return of(HEROES); // comes from mock-heroes.ts
 
-    return this.http.get<Hero[]>(this.heroesUrl)
-      .pipe(
-        tap(_ => this.log('fetched heroes')), // only works if no error was thrown
-        catchError(this.handleError<Hero[]>('getHeroes', []))
-      );
+    return this.http.get<Hero[]>(this.heroesUrl).pipe(
+      tap(_ => this.log('fetched heroes')), // only works if no error was thrown
+      catchError(this.handleError<Hero[]>('getHeroes', []))
+    );
   }
 
   getHero(id: number): Observable<Hero> {
-    this.log(`fetched hero id=${id}`);
-    return of(HEROES.find(hero => hero.id === id));
+    // this.log(`fetched hero id=${id}`);
+    // return of(HEROES.find(hero => hero.id === id));
+
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
   }
 
   private log(message: string) {
