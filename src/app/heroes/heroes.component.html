@@ -1,4 +1,13 @@
 <h2>My Heroes</h2>
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+</div>
 <ul class="heroes">
     <!-- property binding 1 -->
     <!-- adds to <li> class 'selected' if hero equals selectedHero (or removes otherwise - class binding) -->
@@ -11,8 +20,10 @@
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
+    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
   </li>
 </ul>
+
 
 <!-- property binding 2 -->
 <!-- [hero]="selectedHero" - pasing the value of 'selectedHero' from parent component to 'hero' of child component -->
