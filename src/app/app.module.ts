@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api/http-client-in-memory-web-api.module';
 import { InMemoryDataService } from './in-memory-data.service';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 // module is just a register of components, pipes etc, used in this module
 @NgModule({
@@ -19,7 +20,8 @@ import { InMemoryDataService } from './in-memory-data.service';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent // Every component must be declared in exactly one NgModule
+    DashboardComponent,
+    HeroSearchComponent // Every component must be declared in exactly one NgModule
   ],
   imports: [ // makes the *exported* components, pipes etc. of **some other module** available in the current module
     BrowserModule, // BrowserModule provides browser-specific services such as DOM rendering, sanitization, and location

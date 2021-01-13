@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 // @Injectable: Decorator that marks a class as available to be provided and injected as a dependency.
 // HeroService is the provider of its service
 @Injectable({
-  providedIn: 'root' // registered the service provider (HeroService) with root injector ->  Angular creates a single, shared instance of HeroService 
+  providedIn: 'root' // registered the service provider (HeroService) with root injector ->  Angular creates a single, shared instance of HeroService
   // and injects into any class that asks for it.
 })
 export class HeroService {
@@ -92,6 +92,18 @@ export class HeroService {
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
+    );
+  }
+
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found heroes matching "${term}"`) :
+        this.log(`no heroes matching "${term}"`)),
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
 }
